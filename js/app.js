@@ -11,7 +11,7 @@ const allPlayers = () => {
 const showPlayerDetails = (players) => {
 
     const threePlayers = players.slice(0, 3);
-    console.log(threePlayers);
+    // console.log(threePlayers);
     const parent = document.getElementById('player-container')
     for (const player of threePlayers) {
         // console.log(player);
@@ -34,11 +34,20 @@ const showPlayerDetails = (players) => {
 
 const details = (pId) => {
     const url = `https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${pId}`
-    console.log(url);
+    // console.log(url);
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => setDetails(data.players[0]))
 }
 
-
+const setDetails = (info) => {
+    // console.log(info)
+    const containerDiv = document.getElementById('details-container');
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <img src="" alt="">
+    <h1>${info.strPlayer}</h1>
+    `
+    containerDiv.appendChild(div);
+}
 
